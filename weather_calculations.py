@@ -1,5 +1,8 @@
+import warnings
+
 from report_generator import weather_in_year_report, weather_in_month_report, weather_each_day_report
 import sys
+import pandas as pd
 
 import logging
 
@@ -14,8 +17,11 @@ def weather_in_year(weather_data, date):
     # Giving error if user doesnt give right year
     if filtered_data.empty:
         sys.stderr.write('Error:Data for the given year does not exist')
-    # formatting datetime
-    filtered_data.loc[:, 'PKT'] = filtered_data['PKT'].dt.strftime('%d %B')
+
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", category=FutureWarning)
+        # formatting datetime
+        filtered_data.loc[:, 'PKT'] = pd.to_datetime(filtered_data['PKT']).dt.strftime('%d %B')
 
     # Getting highest temperature and humidity values.
     highest_temperature_row = highest_weather_value(filtered_data, 'Max TemperatureC')
