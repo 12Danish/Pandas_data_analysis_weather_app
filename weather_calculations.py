@@ -1,6 +1,12 @@
 from report_generator import weather_in_year_report, weather_in_month_report, weather_each_day_report
 import sys
 
+import logging
+
+# Configuring the django logging to log even the basic things
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
 
 def weather_in_year(weather_data, date):
     filtered_data = weather_data[weather_data['PKT'].dt.year == int(date)]  # Getting data for the year specified
@@ -48,22 +54,25 @@ def weather_in_month(weather_data, date):
     print(report)
 
 
-def weather_each_day(weather_data, date,bonus):
+def weather_each_day(weather_data, date, bonus):
     # filtering the data for the required values
     year, month = map(int, date.split('/'))
-    filtered_data = weather_data[(weather_data['PKT'].dt.year == year) & (weather_data['PKT'].dt.month == month)]
 
+    filtered_data = weather_data[(weather_data['PKT'].dt.year == year) & (weather_data['PKT'].dt.month == month)]
     # Giving error if user doesnt give right year
     if filtered_data.empty:
         sys.stderr.write('Error:Data for the given year/month does not exist')
 
     filtered_data = filtered_data[['PKT', 'Max TemperatureC', 'Min TemperatureC']]
-
     # formatting datetime
-    filtered_data.loc[:, 'PKT'] = filtered_data['PKT'].dt.strftime('%d %B')
+
+    # Check for NaN values and drop those rows
+    filtered_data = filtered_data.dropna(subset=['Max TemperatureC', 'Min TemperatureC'])
+
+    filtered_data['PKT'] = filtered_data['PKT'].dt.strftime('%d %B')
 
     # Generating report
-    report = weather_each_day_report(filtered_data,bonus)
+    report = weather_each_day_report(filtered_data, bonus)
 
     # Printing report for each day
     for each_day in report:

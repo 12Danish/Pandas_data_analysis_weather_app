@@ -2,6 +2,7 @@ import os
 import pandas as pd
 
 
+
 class DataProcessor:
     '''
     This class calls other classes and forms a list of the required data
@@ -13,15 +14,18 @@ class DataProcessor:
         self.columns_to_read = columns_to_read
 
     def process_files(self):
+
         data_structure = []
         for file in self.file_list_2:
             file_extention = os.path.splitext(file)[1]
             destination_file_path = os.path.join(self.target_directory_path, file)
 
             try:
+
                 data = FileReader(destination_file_path, file_extention, self.columns_to_read).read_and_process_data()
 
             except Exception as e:
+
                 return f'Unexpected Error {e}'
             data_structure.append(data)
         return data_structure
@@ -45,7 +49,7 @@ class FileReader:
         elif self.file_extension == '.xlsx':
             return self._process_excel()
         else:
-            print(f"Unsupported file type: {self.file_extension}")
+            print(f"Unsupported file type: {self.destination_file_path}")
             return None
 
     def _process_txt(self, ):
@@ -89,7 +93,8 @@ class FileReader:
         except pd.errors.ParserError:
             return self._generate_error_message(self.destination_file_path, 'EmptyDataError')
 
-    def _generate_error_message(self, destination_file_path, error_type):
+    @staticmethod
+    def _generate_error_message(destination_file_path, error_type):
         return f"{error_type} occurred while processing {destination_file_path}"
 
 
