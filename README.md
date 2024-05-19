@@ -41,7 +41,7 @@ This is a simple CLI application that uses Python's pandas and argparse librarie
 
   ```
 
-![Highest-Lowest](https://github.com/12Danish/Pandas_data_analysis_weather_app/raw/master/sample_images/highest-lowest.jpg)
+![Highest-Lowest](https://github.com/12Danish/Pandas_data_analysis_weather_app/blob/master/sample_images/higest-lowest.jpg)
                                                     
 8. Third Task. Day-wise report:
 
