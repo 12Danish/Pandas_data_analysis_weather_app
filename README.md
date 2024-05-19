@@ -19,11 +19,11 @@ This is a simple CLI application that uses Python's pandas and argparse librarie
 4. Run the project from the terminal using the following command (This is just one example to illustrate the format):
    ```bash
    python weatherman.py <path_to_the_directory_where_your_files_are> -c <YEAR>/<MONTH>
-                                                     
+   ```                               
 5. If there is any confusion typein the terminal:
    ```bash
                                python weatherman.py --help or -h
-   
+   ```
 ![Different Options](https://github.com/12Danish/Pandas_data_analysis_weather_app/raw/master/sample_images/instructions.jpg)
 
 6. Bonus task:
@@ -36,9 +36,10 @@ This is a simple CLI application that uses Python's pandas and argparse librarie
 7. First two tasks. Yearly/monthly reports:
   ```bash
                                python weatherman.py <path_to_the_directory_where_your_files_are> -e <YEAR>
-  ```bash
+
                                python weatherman.py <path_to_the_directory_where_your_files_are> -a <YEAR>/<MONTH>
 
+  ```
 
 ![Highest-Lowest](https://github.com/12Danish/Pandas_data_analysis_weather_app/raw/master/sample_images/highest-lowest.jpg)
                                                     
@@ -47,7 +48,7 @@ This is a simple CLI application that uses Python's pandas and argparse librarie
   ```bash
                                python weatherman.py <path_to_the_directory_where_your_files_are> -c <YEAR>/<MONTH>
 
-
+```
 ![Everyday Report](https://github.com/12Danish/Pandas_data_analysis_weather_app/raw/master/sample_images/everyday%20report.jpg)
 
 ## Learning:
