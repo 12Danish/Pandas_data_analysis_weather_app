@@ -4,7 +4,7 @@ This is a simple CLI application that uses Python's pandas and argparse librarie
 
 ## Directory Structure
 
-- `raw_data`: Contains the data files provided by you.
+- `raw_data`: Contains the data of weather for murree.
 - `file_mover`: Moves/unzips files from any directory specified by the user to the `raw_data` directory.
 - `data_formatter`: Converts the raw data into pandas dataframes which are later used.
 - `weather_calculations`: Contains models that perform all calculations specified by the task.
